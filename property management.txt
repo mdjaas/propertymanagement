@@ -1,0 +1,204 @@
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `bankaccount`
+--
+
+DROP TABLE IF EXISTS `bankaccount`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `bankaccount` (
+  `cardholdername` varchar(20) DEFAULT NULL,
+  `cardnumber` bigint(20) DEFAULT NULL,
+  `cvv` int(3) DEFAULT NULL,
+  `bankbalance` int(9) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `bankaccount`
+--
+
+LOCK TABLES `bankaccount` WRITE;
+/*!40000 ALTER TABLE `bankaccount` DISABLE KEYS */;
+INSERT INTO `bankaccount` VALUES ('abc',1234123412341234,111,100000);
+/*!40000 ALTER TABLE `bankaccount` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `communities`
+--
+
+DROP TABLE IF EXISTS `communities`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `communities` (
+  `communityname` varchar(20) DEFAULT NULL,
+  `street` varchar(30) DEFAULT NULL,
+  `district` varchar(15) DEFAULT NULL,
+  `state` varchar(15) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `communities`
+--
+
+LOCK TABLES `communities` WRITE;
+/*!40000 ALTER TABLE `communities` DISABLE KEYS */;
+INSERT INTO `communities` VALUES ('abc','zzz street','Chennai','Tamil Nadu'),('','','',''),('','','',''),('ab','xyz','Chennai','Tamil Nadu'),('www','www','chennai','tn');
+/*!40000 ALTER TABLE `communities` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `maintenance`
+--
+
+DROP TABLE IF EXISTS `maintenance`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `maintenance` (
+  `ownerortenantname` varchar(20) DEFAULT NULL,
+  `unitno` varchar(5) DEFAULT NULL,
+  `building` varchar(5) DEFAULT NULL,
+  `community` varchar(5) DEFAULT NULL,
+  `maintenanceamount` int(7) DEFAULT NULL,
+  `paidamount` int(7) DEFAULT NULL,
+  `balanceamount` int(7) DEFAULT NULL,
+  `sqft` int(5) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `maintenance`
+--
+
+LOCK TABLES `maintenance` WRITE;
+/*!40000 ALTER TABLE `maintenance` DISABLE KEYS */;
+INSERT INTO `maintenance` VALUES ('abc','A','AA','abc',3000,1500,500,1500),('bb','A','BB','abc',3000,2500,-500,1200);
+/*!40000 ALTER TABLE `maintenance` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `maintenancerequest`
+--
+
+DROP TABLE IF EXISTS `maintenancerequest`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `maintenancerequest` (
+  `unitno` varchar(5) DEFAULT NULL,
+  `building` varchar(5) DEFAULT NULL,
+  `description` varchar(200) DEFAULT NULL,
+  `requestid` int(6) NOT NULL AUTO_INCREMENT,
+  `followup` varchar(50) DEFAULT NULL,
+  `status` varchar(8) DEFAULT NULL,
+  PRIMARY KEY (`requestid`)
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `maintenancerequest`
+--
+
+LOCK TABLES `maintenancerequest` WRITE;
+/*!40000 ALTER TABLE `maintenancerequest` DISABLE KEYS */;
+INSERT INTO `maintenancerequest` VALUES ('A','AA','Electrical',100,'Done','open');
+/*!40000 ALTER TABLE `maintenancerequest` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ownersortenants`
+--
+
+DROP TABLE IF EXISTS `ownersortenants`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ownersortenants` (
+  `firstname` varchar(10) DEFAULT NULL,
+  `secondname` varchar(10) DEFAULT NULL,
+  `username` varchar(8) DEFAULT NULL,
+  `type` varchar(6) DEFAULT NULL,
+  `email` varchar(25) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ownersortenants`
+--
+
+LOCK TABLES `ownersortenants` WRITE;
+/*!40000 ALTER TABLE `ownersortenants` DISABLE KEYS */;
+INSERT INTO `ownersortenants` VALUES ('bb','bb','bb','Tenant','bb@g.com'),('cc','','cc','Tenant','c@g.com'),('abc','','abc','Owner','jaasir.subair@gmail.com'),('bb','bb','bb','Tenant','bb@g.com');
+/*!40000 ALTER TABLE `ownersortenants` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tenantdetails`
+--
+
+DROP TABLE IF EXISTS `tenantdetails`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tenantdetails` (
+  `tenantname` varchar(20) DEFAULT NULL,
+  `unitno` varchar(5) DEFAULT NULL,
+  `building` varchar(10) DEFAULT NULL,
+  `community` varchar(20) DEFAULT NULL,
+  `verification` varchar(9) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tenantdetails`
+--
+
+LOCK TABLES `tenantdetails` WRITE;
+/*!40000 ALTER TABLE `tenantdetails` DISABLE KEYS */;
+INSERT INTO `tenantdetails` VALUES ('bb','A','BB','zzz','verified');
+/*!40000 ALTER TABLE `tenantdetails` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `unitdetails`
+--
+
+DROP TABLE IF EXISTS `unitdetails`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `unitdetails` (
+  `ownername` varchar(15) DEFAULT NULL,
+  `unitno` varchar(4) DEFAULT NULL,
+  `building` varchar(4) DEFAULT NULL,
+  `community` varchar(9) DEFAULT NULL,
+  `verification` varchar(9) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `unitdetails`
+--
+
+LOCK TABLES `unitdetails` WRITE;
+/*!40000 ALTER TABLE `unitdetails` DISABLE KEYS */;
+INSERT INTO `unitdetails` VALUES ('abc','A','AA','abc','verified');
+/*!40000 ALTER TABLE `unitdetails` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
